@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+
+class GenderSelection extends StatefulWidget {
+  @override
+  _GenderSelectionState createState() => _GenderSelectionState();
+}
+
+class _GenderSelectionState extends State<GenderSelection> {
+  // This variable holds the currently selected gender
+  String? _selectedGender = "Male";  // Default value
+
+  // This function will be called when a radio button is selected
+  void _handleGenderChange(String? value) {
+    setState(() {
+      _selectedGender = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Radio Button"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          children: [
+            Text(
+              "Select your gender:",
+              style: TextStyle(fontSize: 20),
+            ),
+            Row(
+              children: [
+                // Male Radio Button
+                Radio<String>(
+                  value: "Male",
+                  groupValue: _selectedGender,
+                  onChanged: _handleGenderChange,
+                ),
+                Text("Male"),
+                SizedBox(width: 25),
+                // Female Radio Button
+                Radio<String>(
+                  value: "Female",
+                  groupValue: _selectedGender,
+                  onChanged: _handleGenderChange,
+                ),
+                Text("Female"),
+              ],
+            ),
+            SizedBox(height: 30),
+            Text(
+              _selectedGender == null
+                  ? "Please select a gender."
+                  : "Selected Gender: $_selectedGender",
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
