@@ -1,0 +1,39 @@
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // Boolean variable to hold the switch state (on or off)
+  bool _isSwitched = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Switch Example")),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Switch widget
+              Switch(
+                value: _isSwitched, // The current state of the switch
+                onChanged: (bool value) {
+                  setState(() {
+                    _isSwitched = value; // Update the state when the switch is toggled
+                  });
+                },
+              ),
+              // Display text based on switch state
+              Text(
+                _isSwitched ? "Switch is ON" : "Switch is OFF",
+                style: TextStyle(fontSize: 18),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
